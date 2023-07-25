@@ -13,11 +13,14 @@ def start():
     bg_color = (0, 0, 0)  # background color (цвет фона)
     player = Player(window)  # создаём игрока из модуля player.py
     bullets = Group()  # создаём группу пуль
+    enemies = Group()
+    control.create_army(window, enemies, screen_width, screen_height)
     while True:  # основной цикл программы
         control.event(window, player, bullets)  # вызываем обработчик событий из модуля control.py
         player.update()  # вызываем функцию отслеживания позиции игрока
-        control.update_screen(bg_color, window, player, bullets)  # обновляем экран
+        control.update_screen(bg_color, window, player, bullets, enemies)  # обновляем экран
         control.update_bullets(bullets)  # проверка на то вылетели ли пуль за пределы экрана
+        control.update_enemy(enemies)
 
 
 start()  # вызов основной функции
